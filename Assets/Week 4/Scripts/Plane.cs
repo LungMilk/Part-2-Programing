@@ -67,7 +67,7 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
-        
+
         if(Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.1f * Time.deltaTime;
@@ -138,4 +138,8 @@ public class Plane : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
