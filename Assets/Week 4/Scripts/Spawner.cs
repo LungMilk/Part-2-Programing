@@ -5,20 +5,13 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject planeobject;
-    Vector2 randomizedPos;
-    Quaternion randomizedAngle;
-
+    
     float spawnInterval;
     float spawnTimer;
     // Start is called before the first frame update
     void Start()
     {
-        spawnInterval = Random.Range(0, 20);
-        randomizedAngle.x = Random.Range(0, 360);
-        randomizedAngle.y = Random.Range(0, 360);
-
-        randomizedPos.x = Random.Range(-8,+8);
-        randomizedPos.y = Random.Range(-8, +8);
+        spawnInterval = Random.Range(0, 10);
     }
 
     // Update is called once per frame
@@ -28,12 +21,10 @@ public class Spawner : MonoBehaviour
 
         if (spawnTimer > spawnInterval)
         {
-            Instantiate(planeobject, randomizedPos, randomizedAngle);
+            Instantiate(planeobject);
             spawnTimer = 0;
 
             spawnInterval = Random.Range(0, 20);
-            randomizedPos.x = Random.Range(-10, +10);
-            randomizedPos.y = Random.Range(-10, +10);
         }
     }
 }
