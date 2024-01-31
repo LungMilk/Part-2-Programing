@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject planeobject;
+    Vector2 randomizedPos;
 
     float spawnInterval;
     float spawnTimer;
@@ -12,7 +13,8 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         spawnInterval = Random.Range(0, 20);
-        Debug.Log(spawnInterval);
+        randomizedPos.x = Random.Range(-8,+8);
+        randomizedPos.y = Random.Range(-8, +8);
     }
 
     // Update is called once per frame
@@ -22,10 +24,12 @@ public class Spawner : MonoBehaviour
 
         if (spawnTimer > spawnInterval)
         {
-            Debug.Log(spawnTimer.ToString());
-            Instantiate(planeobject, Vector3.zero, Quaternion.Euler(0, 0, 0));
+            Instantiate(planeobject, randomizedPos, Quaternion.Euler(0, 0, 0));
             spawnTimer = 0;
 
+            spawnInterval = Random.Range(0, 20);
+            randomizedPos.x = Random.Range(-10, +10);
+            randomizedPos.y = Random.Range(-10, +10);
         }
     }
 }
