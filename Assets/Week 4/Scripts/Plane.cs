@@ -16,7 +16,9 @@ public class Plane : MonoBehaviour
     public AnimationCurve landing;
     float landingTimer;
 
-
+    //planes have to randomise its position once it is spawned
+    //the planes will spawn each other depending on its value with its position also randomized
+    
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
+        
         if(Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.1f * Time.deltaTime;
