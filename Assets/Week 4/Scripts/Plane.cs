@@ -15,6 +15,7 @@ public class Plane : MonoBehaviour
 
     Vector2 lastPosition;
 
+
     Rigidbody2D rigidBody;
     LineRenderer lineRenderer;
     SpriteRenderer spriteRenderer;
@@ -115,6 +116,26 @@ public class Plane : MonoBehaviour
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
             lastPosition = newPosition;
         }
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        float dangerZone = 1;
+        spriteRenderer.color = Color.red;
+
+        Rigidbody2D rb1 = collision.gameObject.GetComponent<Rigidbody2D>();
+        Debug.Log(Vector3.Distance(rigidBody.position, rb1.position));
+
+        if (Vector3.Distance(rigidBody.position, rb1.position) <= dangerZone)
+        {
+            Destroy(gameObject);
+            Debug.Log("plane destroyed");
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.white;
     }
 
 }
