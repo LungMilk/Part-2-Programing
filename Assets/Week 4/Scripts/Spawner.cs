@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject planeobject;
     Vector2 randomizedPos;
+    Quaternion randomizedAngle;
 
     float spawnInterval;
     float spawnTimer;
@@ -13,6 +14,9 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         spawnInterval = Random.Range(0, 20);
+        randomizedAngle.x = Random.Range(0, 360);
+        randomizedAngle.y = Random.Range(0, 360);
+
         randomizedPos.x = Random.Range(-8,+8);
         randomizedPos.y = Random.Range(-8, +8);
     }
@@ -24,7 +28,7 @@ public class Spawner : MonoBehaviour
 
         if (spawnTimer > spawnInterval)
         {
-            Instantiate(planeobject, randomizedPos, Quaternion.Euler(0, 0, 0));
+            Instantiate(planeobject, randomizedPos, randomizedAngle);
             spawnTimer = 0;
 
             spawnInterval = Random.Range(0, 20);
