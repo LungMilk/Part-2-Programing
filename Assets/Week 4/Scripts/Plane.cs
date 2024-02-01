@@ -122,7 +122,7 @@ public class Plane : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("ouch");
+        Debug.Log("Plane OnCollisionEnter2D");
         if (collision.collider.OverlapPoint(rigidBody.position))
         {
             landingState = true;
@@ -136,6 +136,7 @@ public class Plane : MonoBehaviour
         float warningZone = 2;
         if(collision.gameObject.tag == "Player")
         {
+            Debug.Log("player collision working");
             Rigidbody2D rb1 = collision.gameObject.GetComponent<Rigidbody2D>();
             Debug.Log(Vector3.Distance(rigidBody.position, rb1.position));
 
@@ -146,7 +147,7 @@ public class Plane : MonoBehaviour
             }
             else if (Vector3.Distance(rigidBody.position, rb1.position) <= warningZone)
             {
-
+                spriteRenderer.color = Color.red;
             }
 
         }

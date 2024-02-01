@@ -160,9 +160,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 0, y: 0.17889792}
+      - {x: -0.18631807, y: -0.12758675}
+      - {x: 0.17360121, y: -0.12334782}
   m_UseDelaunayMesh: 0
 --- !u!114 &1679563571026116018
 MonoBehaviour:
@@ -342,7 +342,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
