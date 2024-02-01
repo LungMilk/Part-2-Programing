@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Plane : MonoBehaviour
 {
+    public float playerScore;
     public List<Vector2> points;
     public List<Sprite> sprites;
 
+    bool landingState = false;
     public float newPointThreshold = 0.2f;
     public float speed;
     int spriteIndex;
@@ -68,7 +72,7 @@ public class Plane : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Space))
+        if(landingState)
         {
             landingTimer += 0.1f * Time.deltaTime;
             float interpolation = landing.Evaluate(landingTimer);
@@ -94,7 +98,6 @@ public class Plane : MonoBehaviour
             }
             //if (lineRenderer.positionCount != 0) lineRenderer.positionCount--;
         }
-        
     }
 
     void OnMouseDown()
@@ -117,18 +120,35 @@ public class Plane : MonoBehaviour
             lastPosition = newPosition;
         }
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("ouch");
+        if (collision.collider.OverlapPoint(rigidBody.position))
+        {
+            landingState = true;
+            Debug.Log("landing");
+            playerScore++;
+        }
+    }
     void OnTriggerStay2D(Collider2D collision)
     {
         float dangerZone = 1;
-        spriteRenderer.color = Color.red;
-
-        Rigidbody2D rb1 = collision.gameObject.GetComponent<Rigidbody2D>();
-        Debug.Log(Vector3.Distance(rigidBody.position, rb1.position));
-
-        if (Vector3.Distance(rigidBody.position, rb1.position) <= dangerZone)
+        float warningZone = 2;
+        if(collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            Debug.Log("plane destroyed");
+            Rigidbody2D rb1 = collision.gameObject.GetComponent<Rigidbody2D>();
+            Debug.Log(Vector3.Distance(rigidBody.position, rb1.position));
+
+            if (Vector3.Distance(rigidBody.position, rb1.position) <= dangerZone)
+            {
+                Destroy(gameObject);
+                Debug.Log("plane destroyed");
+            }
+            else if (Vector3.Distance(rigidBody.position, rb1.position) <= warningZone)
+            {
+
+            }
+
         }
 
     }
@@ -142,4 +162,5 @@ public class Plane : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
 }
