@@ -71,10 +71,10 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
-
         if(landingState)
         {
             landingTimer += 0.1f * Time.deltaTime;
+            Debug.Log(landingTimer);
             float interpolation = landing.Evaluate(landingTimer);
             if(transform.localScale.z < 0.1f)
             {
@@ -120,15 +120,16 @@ public class Plane : MonoBehaviour
             lastPosition = newPosition;
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Plane OnCollisionEnter2D");
-        if (collision.collider.OverlapPoint(rigidBody.position))
-        {
+        //if (collision.collider.OverlapPoint(rigidBody.position))
+        //{
             landingState = true;
             Debug.Log("landing");
             playerScore++;
-        }
+        //}
     }
     void OnTriggerStay2D(Collider2D collision)
     {
