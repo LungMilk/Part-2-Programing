@@ -51,7 +51,7 @@ public class Plane : MonoBehaviour
 
         gameObject.transform.position = randomizedPos;
         rigidBody.rotation = Random.Range(-360, 360);
-        transform.localScale = new Vector3(4, 4, 4);
+        //transform.localScale = new Vector3(4, 4, 4);
 
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0,transform.position);
@@ -80,7 +80,7 @@ public class Plane : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero,interpolation);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero,interpolation);
         }
 
         lineRenderer.SetPosition(0, transform.position);
