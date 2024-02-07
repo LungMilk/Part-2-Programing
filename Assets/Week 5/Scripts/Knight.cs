@@ -13,6 +13,8 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
 
+    
+
     Vector2 destination;
     Vector2 movement;
 
@@ -51,14 +53,14 @@ public class Knight : MonoBehaviour
     {
         if (dead) return;
         clickSelf = true;
-        TakeDamage(1);
+        SendMessage("TakeDamage", 1);
     }
     private void OnMouseUp()
     {
         clickSelf = false;
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
