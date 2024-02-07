@@ -121,16 +121,6 @@ public class Plane : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Plane OnCollisionEnter2D");
-        //if (collision.collider.OverlapPoint(rigidBody.position))
-        //{
-            landingState = true;
-            Debug.Log("landing");
-            playerScore++;
-        //}
-    }
     void OnTriggerStay2D(Collider2D collision)
     {
         float dangerZone = 1;
@@ -151,6 +141,16 @@ public class Plane : MonoBehaviour
                 spriteRenderer.color = Color.red;
             }
 
+        }
+        else
+        {
+            Debug.Log("Plane OnCollisionEnter2D");
+            //if (collision.collider.OverlapPoint(rigidBody.position))
+            //{
+            landingState = true;
+            Debug.Log("landing");
+            playerScore++;
+            //}
         }
 
     }
