@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         direction.x = -1;
+        Destroy(gameObject,5);
     }
 
     private void FixedUpdate()
@@ -26,10 +27,11 @@ public class Weapon : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("hit");
-        SendMessage("TakeDamage", 2);
-        Destroy(gameObject, 5);
+        collision.SendMessage("TakeDamage", 2);
+        Destroy(gameObject);
     }
+    
 }
