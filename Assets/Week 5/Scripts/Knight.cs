@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator animator;
-    PlayerPrefs savedHealth;
 
     public float speed = 3f;
     bool clickSelf = false;
@@ -21,7 +23,8 @@ public class Knight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
+        health = PlayerPrefs.GetFloat("SavedHealth", maxHealth);
+        SendMessage("InitializeHealth", health);
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -41,6 +44,7 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (dead) return;
         if (Input.GetMouseButtonDown(0) && !clickSelf && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -79,5 +83,6 @@ public class Knight : MonoBehaviour
             dead = false;
             animator.SetTrigger("TakeDamage");
         }
+        PlayerPrefs.SetFloat("SavedHealth", health);
     }
 }
