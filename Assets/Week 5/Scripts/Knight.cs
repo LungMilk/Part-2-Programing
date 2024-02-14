@@ -7,6 +7,7 @@ public class Knight : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator animator;
+    PlayerPrefs savedHealth;
 
     public float speed = 3f;
     bool clickSelf = false;
