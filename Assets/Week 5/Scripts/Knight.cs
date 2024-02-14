@@ -14,8 +14,6 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
 
-    
-
     Vector2 destination;
     Vector2 movement;
 
