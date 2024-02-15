@@ -14,7 +14,7 @@ public class UIModifier : MonoBehaviour
     public void screen169()
     {
         
-        Screen.SetResolution(745, 419, FullScreenMode.Windowed);
+        Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
     }
     
     public void screenHD() 
