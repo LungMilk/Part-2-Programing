@@ -9,8 +9,6 @@ public class Ship : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    int ih = 0;
-
     public float speed;
     public float distThreshold = 0.5f;
     public List<Vector2> mousepts;
