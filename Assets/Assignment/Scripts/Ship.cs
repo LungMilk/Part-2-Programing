@@ -23,9 +23,6 @@ public class Ship : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         speed = 3;
-
-        currentpt = Vector2.zero;
-        //mousepts[0] = currentpt;
     }
     void FixedUpdate()
     {
@@ -33,16 +30,13 @@ public class Ship : MonoBehaviour
         currentpt = transform.position;
 
         if(mousepts.Count > 0 )
-        {
-            Debug.Log(ih);
-            ih++;
-            Vector2 direction = mousepts[0] - currentpt;
+        {    
+            Vector2 direction = mousepts[mousepts.Count -1] - currentpt;
             float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             rb.rotation = -angle;
         }
-        
 
-        //rb.MovePosition(rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + (Vector2)transform.up * speed * Time.deltaTime);
     }
 
     // Update is called once per frame
