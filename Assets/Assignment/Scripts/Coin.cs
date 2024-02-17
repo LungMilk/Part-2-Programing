@@ -17,8 +17,8 @@ public class Coin : MonoBehaviour
 
         Debug.Log("start");
 
-        rndmPos.x = Random.Range(-5, 5);
-        rndmPos.y = Random.Range(-5, 5);
+        rndmPos.x = Random.Range(-4, 4);
+        rndmPos.y = Random.Range(-4, 4);
         rb.position = rndmPos;
     }
 

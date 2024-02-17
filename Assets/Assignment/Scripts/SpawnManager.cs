@@ -9,6 +9,23 @@ public class SpawnManager : MonoBehaviour
     public GameObject obstacle;
     public GameObject coin;
 
+    int spawnTimer;
+    public int spawnThreshold = 20;
+
+    private void Start()
+    {
+        SpawnCoin();
+    }
+    private void FixedUpdate()
+    {
+        spawnTimer++;
+        if (spawnTimer > spawnThreshold)
+        {
+            SpawnObstacle();
+            spawnTimer = 0;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.C))
@@ -19,6 +36,9 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnObstacle();
         }
+
+
+
     }
     public void SpawnObstacle()
     {

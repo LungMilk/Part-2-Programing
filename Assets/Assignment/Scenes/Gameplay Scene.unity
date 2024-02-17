@@ -550,6 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacle: {fileID: 7289495995767647996, guid: c119e6de496f3304295a161cfb42f772, type: 3}
   coin: {fileID: 1624109699297781161, guid: 6b5a6b0f28c90704b9f1e5f1b2ce65c3, type: 3}
+  spawnThreshold: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
