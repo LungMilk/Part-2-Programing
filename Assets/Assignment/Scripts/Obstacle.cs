@@ -20,7 +20,6 @@ public class Obstacle : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.rotation = Random.Range(-360, 360);
-        direction.x = 1;
         Debug.Log(rb.rotation);
         rndmPos.x = Random.Range(-10,10);
         rndmPos.y = Random.Range(-10, 10);

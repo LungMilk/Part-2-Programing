@@ -77,7 +77,7 @@ public class Ship : MonoBehaviour
         Debug.Log("Wheee!");
     }
 
-    void takeDamage()
+    public void takeDamage()
     {
         health--;
         Debug.Log(health);
