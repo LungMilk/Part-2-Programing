@@ -9,6 +9,8 @@ using TMPro;
 public class Ship : MonoBehaviour
 {
     public TextMeshProUGUI playerScore;
+    public Slider SpeedGauge;
+    public AnimationCurve SpeedCurve;
 
     float health;
     float maxhealth = 5;
@@ -20,8 +22,11 @@ public class Ship : MonoBehaviour
     public Rigidbody2D rb;
     Animator animator;
 
-    public float speed;
+    public Vector2 speedV;
     public float distThreshold = 0.5f;
+    public float interpolation;
+    float timer;
+
     public List<Vector2> mousepts;
 
     Vector2 currentpt;
@@ -36,12 +41,13 @@ public class Ship : MonoBehaviour
         score = 0;
 
         health = maxhealth;
-        speed = 3;
+        speedV.x = 3;
         death = false;
     }
     void FixedUpdate()
     {
-        Debug.Log("FixedUpdate");
+        SpeedGauge.value = speedV.x;
+
         currentpt = transform.position;
 
         if(mousepts.Count > 0 )
@@ -51,7 +57,7 @@ public class Ship : MonoBehaviour
             rb.rotation = -angle;
         }
 
-        rb.MovePosition(rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + (Vector2)transform.up * speedV.x * Time.deltaTime);
     }
 
     // Update is called once per frame
@@ -61,11 +67,10 @@ public class Ship : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             speedBoost();
-            takeDamage();
         }
         else if(Input.GetKeyUp(KeyCode.Mouse0))
         {
-            speed = 3;
+            speedV.x = 3;
         }
         
 
@@ -77,13 +82,14 @@ public class Ship : MonoBehaviour
             mousepts.Add(updatedPos);
             lastpt = updatedPos;
         }
-
+        timer = timer + Time.deltaTime;
+        speedV.y = timer;
     }
     
     void speedBoost()
     {
-        speed = 5;
-        Debug.Log("Wheee!");
+        interpolation = SpeedCurve.Evaluate(timer);
+        speedV = speedV + Vector2.Lerp(currentpt, speedV, interpolation);
     }
 
     public void takeDamage()

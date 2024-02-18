@@ -15,8 +15,6 @@ public class Coin : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Debug.Log("start");
-
         rndmPos.x = Random.Range(-4, 4);
         rndmPos.y = Random.Range(-4, 4);
         rb.position = rndmPos;
@@ -24,7 +22,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("coin is picked up");
+        //Debug.Log("coin is picked up");
         Destroy(gameObject);
         collision.SendMessage("SpawnCoin");
         collision.SendMessage("increaseScore");
