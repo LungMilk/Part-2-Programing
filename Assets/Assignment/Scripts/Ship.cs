@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Ship : MonoBehaviour
     public float distThreshold = 0.5f;
     public float interpolation;
     float timer;
+    int delayTimer;
 
     public List<Vector2> mousepts;
 
@@ -46,6 +48,7 @@ public class Ship : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (death) { delayTimer++; gameOver(); }
         SpeedGauge.value = speedV.x;
 
         currentpt = transform.position;
@@ -63,8 +66,7 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (death) return;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             speedBoost();
         }
@@ -109,9 +111,18 @@ public class Ship : MonoBehaviour
         }
         
     }
+    void gameOver()
+    {
+        if (delayTimer>=60) 
+        {
+            Debug.Log("gameover");
+            SceneManager.LoadScene(6);
+        }
+    }
     void increaseScore()
     {
         score++;
+        PlayerPrefs.SetInt("Score",score);
         playerScore.text = "Score: " + score.ToString();
     }
 }
