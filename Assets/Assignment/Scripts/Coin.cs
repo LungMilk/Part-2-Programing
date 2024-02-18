@@ -27,5 +27,6 @@ public class Coin : MonoBehaviour
         Debug.Log("coin is picked up");
         Destroy(gameObject);
         collision.SendMessage("SpawnCoin");
+        collision.SendMessage("increaseScore");
     }
 }

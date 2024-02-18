@@ -4,11 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using TMPro;
 
 public class Ship : MonoBehaviour
 {
+    public TextMeshProUGUI playerScore;
+
     float health;
     float maxhealth = 5;
+
+    int score;
+
     bool death;
 
     public Rigidbody2D rb;
@@ -26,6 +32,9 @@ public class Ship : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        score = 0;
+
         health = maxhealth;
         speed = 3;
         death = false;
@@ -93,5 +102,10 @@ public class Ship : MonoBehaviour
             animator.SetTrigger("IsDead");
         }
         
+    }
+    void increaseScore()
+    {
+        score++;
+        playerScore.text = "Score: " + score.ToString();
     }
 }
