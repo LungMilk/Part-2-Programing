@@ -20,8 +20,9 @@ public class GoalkeerperController : MonoBehaviour
         PlayerPosition = Controller.CurrentSelection.transform.position;
         direction = ((Vector2)goalKeeperRB.transform.position - (Vector2)PlayerPosition).normalized;
         magnitude = ((Vector2)goalKeeperRB.transform.position - (Vector2)PlayerPosition).magnitude;
+        Vector2 newPos = (Vector2)goalControllerTransform.position + -direction * magnitude / 2;
+        goalKeeperRB.position = Vector2.MoveTowards(goalKeeperRB.position, newPos, 0.1f);
 
-        goalKeeperRB.MovePosition((Vector2)goalControllerTransform.position + -direction * magnitude / 2);
     }
     
 }
