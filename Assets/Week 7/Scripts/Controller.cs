@@ -3,9 +3,13 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
+
+
     //PlayerScript = FootballPlayer
     public Slider chargeSlider;
     float charge;
@@ -13,6 +17,7 @@ public class Controller : MonoBehaviour
     Vector2 direction;
 
     public static PlayerScript CurrentSelection { get; private set; }
+    public static int score;
 
     public static void SetCurrentSelection(PlayerScript player)
     {
@@ -34,6 +39,8 @@ public class Controller : MonoBehaviour
     }
     private void Update()
     {
+        scoreText.text = "Score: " + score;
+
         if (CurrentSelection == null) return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
