@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour
 {
     Rigidbody2D rb;
     SpriteRenderer rbSprite;
-
+    public float speed = 100;
     public Color defState;
     public Color highlighted;
 
@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     {
         Controller.SetCurrentSelection(this);
     }
+
     public void Selected(bool selected)
     {
         if (selected)
@@ -34,5 +35,9 @@ public class PlayerScript : MonoBehaviour
         {
             rbSprite.color = defState;
         }
+    }
+    public void Move(Vector2 direction)
+    {
+        rb.AddForce(direction * speed,ForceMode2D.Impulse);
     }
 }
