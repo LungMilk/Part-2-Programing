@@ -8,7 +8,6 @@ using TMPro;
 public class Controller : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public GoalkeerperController GKcontroller;
 
     //PlayerScript = FootballPlayer
     public Slider chargeSlider;
